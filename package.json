@@ -12,7 +12,8 @@
     "dist"
   ],
   "scripts": {
-    "dev": "rollup -c -w | node demo/server.mjs"
+    "dev": "rollup -c -w | node demo/server.mjs",
+    "build": "rollup -c"
   },
   "keywords": [
     "jigsaw",

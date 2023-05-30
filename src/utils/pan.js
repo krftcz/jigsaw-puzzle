@@ -38,19 +38,19 @@ export const restore = () => {
 
 function isTouchDevice() {
   return (
-    'ontouchstart' in window ||
-    navigator.maxTouchPoints > 0 ||
-    navigator.msMaxTouchPoints > 0
+      'ontouchstart' in window ||
+      navigator.maxTouchPoints > 0 ||
+      navigator.msMaxTouchPoints > 0
   )
 }
 
 export default (
-  canvas,
-  {
-    dpi = Math.min(2, window.devicePixelRatio),
-    bounding = null,
-    initScale = 1,
-  } = {}
+    canvas,
+    {
+      dpi = Math.min(2, window.devicePixelRatio),
+      bounding = null,
+      initScale = 1,
+    } = {}
 ) => {
   canvas.style.touchAction = 'none'
   canvas.style.userSelect = 'none'
@@ -63,12 +63,12 @@ export default (
 
   const dispatch = detail => {
     canvas.dispatchEvent(
-      new CustomEvent('pan', {
-        detail,
-        bubbles: true,
-        cancelable: true,
-        composed: false,
-      })
+        new CustomEvent('pan', {
+          detail,
+          bubbles: true,
+          cancelable: true,
+          composed: false,
+        })
     )
   }
 
@@ -103,7 +103,7 @@ export default (
     const fingersArray = Object.values(fingers)
 
     const distance = Math.sqrt(
-      Math.pow(fingersArray[1].x - fingersArray[0].x, 2) +
+        Math.pow(fingersArray[1].x - fingersArray[0].x, 2) +
         Math.pow(fingersArray[1].y - fingersArray[0].y, 2)
     )
 
@@ -128,28 +128,6 @@ export default (
     lastDistance = null
   }
 
-  if (isTouchDevice()) {
-    canvas.addEventListener('pointerdown', handlePointerdown)
-    canvas.addEventListener('pointermove', handlePointermove)
-    canvas.addEventListener('pointerup', handlePointerup)
-    canvas.addEventListener('pointercancel', handlePointerup)
-  } else {
-    canvas.addEventListener('wheel', e => {
-      e.preventDefault()
-
-      if (e.ctrlKey) {
-        dispatch(
-          zoom({
-            focal: { x: e.offsetX * dpi, y: e.offsetY * dpi },
-            zoom: 1 - e.deltaY / 100,
-          })
-        )
-      } else {
-        dispatch(move({ x: -e.deltaX, y: -e.deltaY }))
-      }
-    })
-  }
-
   return {
     zoom: newScale => {
       zoom({
@@ -170,8 +148,8 @@ export default (
 }
 
 export const getTransformedPosition = (
-  { x, y },
-  dpi = Math.min(2, window.devicePixelRatio)
+    { x, y },
+    dpi = Math.min(2, window.devicePixelRatio)
 ) => {
   return [(x * dpi - position.x) / scale, (y * dpi - position.y) / scale]
 }
