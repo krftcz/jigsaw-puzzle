@@ -11,14 +11,15 @@ const X = $('#x')
 const Y = $('#y')
 
 const images = [
-  'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.customwallpaper.net.au%2Fwp-content%2Fuploads%2F2016%2F04%2FAdobeStock_96051485.jpg&f=1&nofb=1'
+  'https://api.devel.iropnasbavi.cz/storage/2_DSC04241.jpeg'
 ]
 
 const options = {
   element: '#app',
   image: images[Math.floor((Date.now() / 1000) % images.length)],
-  pieces: { x: 6, y: 6 },
-  attraction: 3,
+  pieces: { x: 10, y: 5 },
+  attraction: 5,
+  zoom: 0.3,
   aligned: true,
   beforeInit: canvas => {
     // console.log('before init:', canvas)
