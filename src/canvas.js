@@ -36,7 +36,7 @@ export const makeCanvas = element => {
 
     resize(canvas)
   }
-  
+
   ctx.strokeStyle = 'rgba(220, 220, 220, 1)'
   ctx.lineCap = 'round'
   ctx.lineJoin = 'round'

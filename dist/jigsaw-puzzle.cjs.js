@@ -585,7 +585,7 @@ var pan = (
 
 const getTransformedPosition = (
     { x, y },
-    dpi = Math.min(2, window.devicePixelRatio)
+    dpi
 ) => {
   return [(x * dpi - position.x) / scale, (y * dpi - position.y) / scale]
 };
@@ -624,7 +624,7 @@ const makeCanvas = element => {
 
     resize(canvas);
   }
-  
+
   ctx.strokeStyle = 'rgba(220, 220, 220, 1)';
   ctx.lineCap = 'round';
   ctx.lineJoin = 'round';
@@ -943,7 +943,7 @@ const puzzle = async ({
   const getCursor = ({ x, y }) => {
     const [xpos, ypos] = getTransformedPosition(
       { x, y },
-      Math.min(2, window.devicePixelRatio)
+      1
     );
     return { x: xpos / state.ui.size.x, y: ypos / state.ui.size.y }
   };

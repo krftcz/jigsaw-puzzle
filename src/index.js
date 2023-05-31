@@ -101,7 +101,7 @@ export const puzzle = async ({
   const getCursor = ({ x, y }) => {
     const [xpos, ypos] = getTransformedPosition(
       { x, y },
-      Math.min(2, window.devicePixelRatio)
+      1
     )
     return { x: xpos / state.ui.size.x, y: ypos / state.ui.size.y }
   }
