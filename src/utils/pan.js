@@ -4,7 +4,7 @@ const clamp = (val, min, max) => {
 
 let scale = 1
 const position = {
-  x: 320,
+  x: 225,
   y: 125,
 }
 
@@ -128,6 +128,28 @@ export default (
     e.preventDefault()
     delete fingers[e.pointerId]
     lastDistance = null
+  }
+
+  if (isTouchDevice()) {
+    canvas.addEventListener('pointerdown', handlePointerdown)
+    canvas.addEventListener('pointermove', handlePointermove)
+    canvas.addEventListener('pointerup', handlePointerup)
+    canvas.addEventListener('pointercancel', handlePointerup)
+  } else {
+    canvas.addEventListener('wheel', e => {
+      e.preventDefault()
+
+      if (e.ctrlKey) {
+        dispatch(
+            zoom({
+              focal: { x: e.offsetX * dpi, y: e.offsetY * dpi },
+              zoom: 1 - e.deltaY / 100,
+            })
+        )
+      } else {
+        dispatch(move({ x: -e.deltaX, y: -e.deltaY }))
+      }
+    })
   }
 
   return {
