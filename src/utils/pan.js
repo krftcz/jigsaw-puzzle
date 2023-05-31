@@ -4,7 +4,7 @@ const clamp = (val, min, max) => {
 
 let scale = 1
 const position = {
-  x: 250,
+  x: 320,
   y: 125,
 }
 
