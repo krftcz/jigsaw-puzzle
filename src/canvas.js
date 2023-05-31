@@ -15,8 +15,10 @@ export const resize = canvas => {
 
   const dpr = Math.min(2, window.devicePixelRatio)
 
-  canvas.width = parseInt(width, 0) * dpr
-  canvas.height = parseInt(height, 0) * dpr
+  canvas.width = parseInt(width, 0)
+  canvas.height = parseInt(height, 0)
+  //canvas.width = parseInt(width, 0) * dpr
+  //canvas.height = parseInt(height, 0) * dpr
 }
 
 export const makeCanvas = element => {

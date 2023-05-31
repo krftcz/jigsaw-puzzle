@@ -31,6 +31,7 @@ const zoom = ({ focal, zoom, max = 10000, min = 0.05 }) => {
 }
 
 export const restore = () => {
+  console.log('RESTORE');
   position.x = 0;
   position.y = 0;
   //position.x = (window.innerWidth / 2) * Math.min(2, window.devicePixelRatio)
