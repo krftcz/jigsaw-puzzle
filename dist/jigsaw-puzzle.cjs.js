@@ -1,1 +1,1019 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const e=e=>t=>(e(t),t),t=(e=Math.random())=>.5*(Math.cos(6669.1337*Math.sin(1337.1337*(e+69)))+1),i=e=>t=>i=>("function"==typeof t?t(i):t)?e(i):i,o=(...e)=>t=>[...e].reduce(((e,t)=>t(e)),t),n=e=>JSON.parse(JSON.stringify(e)),s=(e,t,i)=>{const o=e+1,n={top:o>i?e-i:void 0,right:o%i!=0?e+1:void 0,bottom:o<=(t-1)*i?e+i:void 0,left:o%i!=(i>1?1:0)?e-1:void 0};return JSON.parse(JSON.stringify(n))},a=["top","right","bottom","left"],c=["top","right","bottom","left"],r=(e,t)=>c.indexOf(e[0])>c.indexOf(t[0])?1:-1,p=(e,i)=>{const o=(t,i)=>e.find((e=>e.id===t))?.sides[{top:"bottom",right:"left",bottom:"top",left:"right"}[i]],n=[...Object.entries({...(({neighbors:e})=>Object.keys(e).reduce(((i,n)=>{const s=o(e[n],n);return{[n]:s?(a=s,"out"===a?"in":"out"):t()>=.5?"out":"in",...i};var a}),{}))(i),...(({neighbors:e})=>a.filter((t=>!Object.keys(e).includes(t))).reduce(((e,t)=>({[t]:"flat",...e})),{}))(i)})].sort(r).reduce(((e,[t,i])=>({...e,[t]:i})),{});return[{...i,sides:n},...e]},d=e=>[...new Set(e)],l=(e,t)=>t.active?-1:1,h=e=>t=>t.reduceRight(((t,i,o,n)=>[...t,e(i,o,n,t)]),[]);function u(e){const t=[...e];let i=t.length;for(;i>0;){let e=Math.floor(Math.random()*i);i--;let o=t[i];t[i]=t[e],t[e]=o}return t}const x=e=>Math.random()*(e- -1*e)+-1*e,y=(e=!1)=>i=>({...i,pieces:e?u(i.pieces).map(((e,t)=>({...e,connections:[],pos:{x:t%i.size.x/i.size.x*2-.4+x(.03),y:Math.floor(t/i.size.x)/i.size.y*2-.4+x(.03)}}))):i.pieces.map((e=>({...e,connections:[],pos:{x:2*t()-.5,y:2*t()-.5}})))}),m=(e,{x:t,y:i,width:o,height:n})=>t>=e.pos.x&&t<=e.pos.x+o&&i>=e.pos.y&&i<=e.pos.y+n,f=(e,{x:t,y:i})=>({x:t-e.pos.x,y:i-e.pos.y}),g=e((e=>{e.pieces=e.pieces.map((e=>({...e,active:!1})))})),z=(e,t)=>i=>i[e]===t,v=e((e=>{const t=e.pieces.filter((e=>e.active)),{size:i}=e;t.length&&t.length!==e.pieces.length&&t.forEach((t=>{Object.entries(t.neighbors).forEach((([o,n])=>{const s=e.pieces.find(z("id",n));if(((e,t,i,o)=>{const{attraction:n,size:s}=i,a=n/100,c=(e=>"top"===e||"bottom"===e)(o)?"y":"x",r="x"===c?"y":"x",p=!(e=>"top"===e||"left"===e)(o),d="y"===c?1/s.y:1/s.x,l=p?t.pos[c]+d:t.pos[c]-d;return e.pos[c]<=l+a&&e.pos[c]>=l-a&&e.pos[r]<=t.pos[r]+a&&e.pos[r]>=t.pos[r]-a})(s,t,e,o)){const n={x:s.pos.x+("right"===o?-1/i.x:"left"===o?1/i.x:0),y:s.pos.y+("top"===o?1/i.y:"bottom"===o?-1/i.y:0)};((e,[...t],i)=>{t.forEach((t=>{const o=e.pieces.find(z("id",t));o.pos={x:o.pos.x+i.x,y:o.pos.y+i.y}}))})(e,t.connections,{x:n.x-t.pos.x,y:n.y-t.pos.y}),t.pos=n,((e,t,i)=>{t.connections=d([t.id,i.id,...t.connections,...i.connections]),t.connections.forEach((i=>{const o=e.pieces.find((e=>e.id===i));o.connections=d(t.connections)})),i.connections.forEach((i=>{const o=e.pieces.find((e=>e.id===i));o.connections=d(t.connections)}))})(e,t,s)}}))}))})),w=e((e=>{"active"===e.status&&(e.moves=e.moves+1),e.pieces[0].connections.length!==e.size.y*e.size.x||e.done||(e.done=!0)})),b=({x:t,y:i})=>e((e=>{const o=e.pieces.find((e=>e.active));if(o)return void(e.status="active");!e.pieces.find((o=>m(o,{x:t,y:i,width:1/e.size.x,height:1/e.size.y})))||o?e.status="idle":e.status="ready"}));(()=>{if(!function(){const e=document.createElement("canvas").getContext("2d");e.fillRect(0,0,40,40),e.drawImage(e.canvas,-40,-40,80,80,50,50,20,20);const t=e.getImageData(50,50,30,30),i=new Uint32Array(t.data.buffer),o=(e,o)=>i[o*t.width+e];return[[9,9],[20,9],[9,20],[20,20]].some((([e,t])=>0!==o(e,t)))||[[10,10],[19,10],[10,19],[19,19]].some((([e,t])=>0===o(e,t)))}())return;const e=CanvasRenderingContext2D.prototype,t=e.drawImage;function i(e,t,i,o,n,s,a,c,r){const{width:p,height:d}=function(e){const t=t=>{const i=globalThis[t];return i&&e instanceof i};if(t("HTMLImageElement"))return{width:e.naturalWidth,height:e.naturalHeight};if(t("HTMLVideoElement"))return{width:e.videoWidth,height:e.videoHeight};if(t("SVGImageElement"))throw new TypeError("SVGImageElement isn't yet supported as source image.","UnsupportedError");if(t("HTMLCanvasElement")||t("ImageBitmap"))return e}(e);o<0&&(t+=o,o=Math.abs(o)),n<0&&(i+=n,n=Math.abs(n)),c<0&&(s+=c,c=Math.abs(c)),r<0&&(a+=r,r=Math.abs(r));const l=Math.max(t,0),h=Math.min(t+o,p),u=Math.max(i,0),x=Math.min(i+n,d),y=c/o,m=r/n;return[e,l,u,h-l,x-u,t<0?s-t*y:s,i<0?a-i*m:a,(h-l)*y,(x-u)*m]}function o(e){return[3,4,7,8].some((t=>!e[t]))}t?e.drawImage=function(e,n,s){const a=9===arguments.length;if(!a)return t.apply(this,[...arguments]);const c=i(...arguments);return o(c)?void 0:t.apply(this,c)}:console.error("This script requires a basic implementation of drawImage")})();let M=1;const E={x:250,y:125},S=({focal:e,zoom:t,max:i=1e4,min:o=.05})=>{const n=M===i||M===o;M=((e,t,i)=>Math.max(t,Math.min(i,e)))(M*t,o,i);const s=n?E.x:e.x,a=n?E.y:e.y;return E.x=s-(s-E.x)*t,E.y=a-(a-E.y)*t,{position:E,scale:M}};var C=(e,{dpi:t=Math.min(2,window.devicePixelRatio),bounding:i=null,initScale:o=1}={})=>{e.style.touchAction="none",e.style.userSelect="none",e.style.webkitUserSelect="none",e.style.overscrollBehaviour="contain",M=o;const n=t=>{e.dispatchEvent(new CustomEvent("pan",{detail:t,bubbles:!0,cancelable:!0,composed:!1}))};return setTimeout((()=>n({scale:M,position:E}))),{zoom:e=>{S({focal:{x:window.innerWidth/2*t,y:window.innerHeight/2*t},zoom:e}),n({scale:M,position:E})},restore:()=>{console.log("RESTORE"),E.x=0,E.y=0,n({scale:M,position:E})}}};const I=e=>{const{height:t,width:i}=getComputedStyle(e.parentElement);e.width=parseInt(i,0),e.height=parseInt(t,0)},O=e((e=>{const{canvas:t,ctx:i}=e;i.save(),i.setTransform(1,0,0,1,0,0),i.clearRect(0,0,t.width,t.height),i.restore()})),T=t=>e((e=>{O(e),t.pieces.map(R(t,e))})),R=(e,t)=>i=>{const o={x:i.pos.x*t.size.x,y:i.pos.y*t.size.y},n={x:t.size.x/e.size.x,y:t.size.y/e.size.y},s=t.shapes[i.id],{ctx:a,image:c}=t,r=Math.max(n.x,n.y);a.save(),a.translate(o.x,o.y);const p=!e.done&&(i.active||i.alsoActive),d=4/Math.max(t.zoom,2);a.shadowColor=p?"rgba(100, 100, 100, 1)":"rgba(50, 50, 50, 1)",a.shadowBlur=d,a.shadowOffsetX=a.shadowOffsetY=-d/2,a.lineWidth=p?2*d:d,a.stroke(s),a.clip(s),a.drawImage(c,i.origin.x*n.x-r,i.origin.y*n.y-r,n.x+2*r,n.y+2*r,i.pos.x/t.size.x-r,i.pos.y/t.size.y-r,n.x+2*r,n.y+2*r),a.restore()},A=(e,t,...i)=>{const o=t*Math.PI/180,{sin:n,cos:s}=Math;return i.map((([t,i])=>[(t-e.x)*s(o)-(i-e.y)*n(o)+e.x,(t-e.x)*n(o)+(i-e.y)*s(o)+e.y])).flat()},N=(e,t)=>{const[i]=e[0];return e.map((e=>A({x:i[0],y:i[1]},t,...e)))},P=(e,t)=>e.map((e=>e.map((e=>[e[0]+t.x,e[1]+t.y])))),k=({size:e,shapes:t,knobsize:i})=>{const o=new Path2D;if(4===!t.length)return void console.log("a piece needs to have 4 sides");const n=[0,90,180,270];return[{x:0,y:0},{x:e.x,y:0},{x:e.x,y:e.y},{x:0,y:e.y}].forEach(((s,a)=>{const c=a%2==1?e.y:e.x,r=t[a];if("flat"===r){const e=A(s,n[a],[s.x+c,s.y]);o.lineTo(...e)}else{const e=(({knobsize:e=1,length:t=100})=>{const i=t/2;return[[[0,0],[i-20*e,4*e],[i-13*e,0]],[[i-13*e,0],[i-10*e,-2*e],[i-12*e,-5*e]],[[i-12*e,-5*e],[i-30*e,-30*e],[i,-30*e]],[[i,-30*e],[i- -30*e,-30*e],[i- -12*e,-5*e]],[[i- -12*e,-5*e],[i- -10*e,-2*e],[i- -13*e,0]],[[i- -13*e,0],[i- -20*e,4*e],[t,0]]]})({length:c,knobsize:i});N(P("in"===r?((e,t=1)=>e.map((e=>e.map((e=>[e[0]*t,-1*e[1]])))))(e):e,s),n[a]).forEach((e=>o.bezierCurveTo(...e.flat())))}})),o.closePath(),o},L=(e,t,i)=>i.reduce(((i,o)=>({...i,[o.id]:k({size:{x:e,y:t},shapes:Object.values(o.sides),knobsize:Math.min(e,t)/110})})),{});exports.puzzle=async({element:t,image:a="",pieces:c={x:6,y:4},attraction:r=5,aligned:d=!1,zoom:u,beforeInit:x=(()=>{}),onInit:z=(()=>{}),onComplete:S=(()=>{}),onChange:O=(()=>{})})=>{const R="string"==typeof t?document.querySelector(t):t;if(!R)return void console.warn(`Couldn't find element: ${t}`);const{canvas:A,ctx:N}=(e=>{const t=e&&"CANVAS"===e.tagName?e:document.createElement("canvas"),i=t.getContext("2d");return e&&"CANVAS"!==e.tagName&&(e.appendChild(t),t.style.width="100%",t.style.height="100%",I(t)),i.strokeStyle="rgba(220, 220, 220, 1)",i.lineCap="round",i.lineJoin="round",{canvas:t,ctx:i}})(R);x(A);const{image:P,width:k,height:H}=await(j=a,new Promise((e=>{var t=new Image;t.onload=()=>e({image:t,width:t.width,height:t.height}),t.src=j})));var j;const V={moves:0,status:"idle",done:!1,startTime:Date.now(),attraction:r,size:c,pieces:(D=c,[...Array(D.y*D.x)].map(((e,t)=>({id:t,origin:{x:t%D.x,y:Math.floor(t/D.x)},pos:{x:0,y:0},neighbors:s(t,D.y,D.x),active:!1,connections:[]}))).reduce(p,[]))};var D;const J={url:a,zoom:1,position:{x:0,y:0},size:{x:k,y:H},canvas:A,ctx:N,image:P,dpi:Math.min(2,window.devicePixelRatio),shapes:L(k/c.x,H/c.y,V.pieces)};let W={};W.puzzle=o(y(d))(V),W.ui=T(W.puzzle)(J);const{zoom:X,restore:Y}=C(A,{dpi:Math.min(2,window.devicePixelRatio),initScale:u||Math.min(window.innerWidth/W.ui.size.x*.9,window.innerHeight/W.ui.size.y*.9)}),B=()=>{W.ui=o(T(W.puzzle),(t=>e((e=>{e.canvas.style.cursor="active"===t.status?"grabbing":"ready"===t.status?"grab":"default"})))(W.puzzle))(W.ui)};A.addEventListener("pan",(e=>{e.preventDefault();const{detail:{scale:t,position:i}}=e;W.ui.zoom=t,W.ui.position=i,W.ui.ctx.setTransform(t,0,0,t,i.x,i.y),B()})),setTimeout((()=>z(W)));const G=({x:e,y:t})=>{const[i,o]=(({x:e,y:t},i=Math.min(2,window.devicePixelRatio))=>[(e*i-E.x)/M,(t*i-E.y)/M])({x:e,y:t},Math.min(2,window.devicePixelRatio));return{x:i/W.ui.size.x,y:o/W.ui.size.y}};return W.ui.canvas.addEventListener("pointerdown",(({offsetX:e,offsetY:t})=>{const n=G({x:e,y:t});W.puzzle=o((({x:e,y:t})=>n=>{return{...n,pieces:o(h(((i,o,s,a)=>{return{...i,active:!(a.find((c="active",e=>e[c]))||!m(i,{x:e,y:t,width:1/n.size.x,height:1/n.size.y}))&&f(i,{x:e,y:t})};var c})),h(((i,o,n)=>({...i,active:n.find((e=>e.active&&e.connections.includes(i.id)))?f(i,{x:e,y:t}):i.active}))),i((s=l,e=>e.sort(s)))((e=>!n.done&&e.filter((e=>e.active)).length!==n.pieces.length)))(n.pieces)};var s})(n),b(n))(W.puzzle),B()})),W.ui.canvas.addEventListener("pointermove",(({offsetX:e,offsetY:t})=>{const i=G({x:e,y:t});W.puzzle=o((({x:e,y:t})=>i=>({...i,pieces:"idle"===i.status?i.pieces:i.pieces.map((i=>({...i,pos:i.active?{x:e-i.active.x,y:t-i.active.y}:i.pos})))}))(i),b(i))(W.puzzle),B()})),W.ui.canvas.addEventListener("pointerup",(({offsetX:e,offsetY:t})=>{const i=G({x:e,y:t});W.puzzle=o(v,g,w,b(i))(W.puzzle),B(),O({ui:W.ui,puzzle:n(W.puzzle)}),W.puzzle.done&&S(W)})),window.addEventListener("resize",(()=>{const{zoom:e,position:t}=W.ui;I(W.ui.canvas),N.setTransform(e,0,0,e,t.x,t.y),B()})),{newGame:()=>{W.puzzle=o(y(d))(V),B()},getState:()=>n(W.puzzle),setState:e=>{W.puzzle=e,B()},destroy:()=>{"CANVAS"!==t.tagName&&W.ui.canvas.remove(),W=null},setZoom:X,getZoom:()=>W.ui.zoom,centralize:Y}};
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+const tap = fn => x => { fn(x); return x };
+
+// random number 0 - 1, based on hash
+const random = (hash = Math.random()) =>
+  (Math.cos(Math.sin((hash + 69) * 1337.1337) * 6669.1337) + 1) * 0.5;
+
+// ex. runIf(console.log)(true)('foo') -> prints 'foo'
+// ex. runIf(console.log)(false)('bar') -> returns 'bar'
+// ex. runIf(console.log)(x => x === 'bar'))('bar') -> prints 'bar'
+const runIf = fn => x => y =>
+  (typeof x === 'function' ? x(y) : x) ? fn(y) : y;
+
+const pipe =
+  (...fns) =>
+  x =>
+    [...fns].reduce((acc, f) => f(acc), x);
+
+const clone = obj => JSON.parse(JSON.stringify(obj));
+
+// calculates which pieces are next to given piece
+const getNeighbors = (i, rows, cols) => {
+  const slot = i + 1;
+
+  const neighbors = {
+    top: slot > cols ? i - cols : undefined,
+    right: slot % cols !== 0 ? i + 1 : undefined,
+    bottom: slot <= (rows - 1) * cols ? i + cols : undefined,
+    left: slot % cols !== (cols > 1 ? 1 : 0) ? i - 1 : undefined,
+  };
+
+  return JSON.parse(JSON.stringify(neighbors))
+};
+
+const allSides = ['top', 'right', 'bottom', 'left'];
+const isVertical = side => side === 'top' || side === 'bottom';
+
+const oppositeOf = x => (x === 'out' ? 'in' : 'out');
+const order = ['top', 'right', 'bottom', 'left'];
+const clockwise = (a, b) => (order.indexOf(a[0]) > order.indexOf(b[0]) ? 1 : -1);
+
+const makeShapes = (acc, piece) => {
+  const neighborShape = (id, side) =>
+    acc.find(piece => piece.id === id)?.sides[
+      {
+        top: 'bottom',
+        right: 'left',
+        bottom: 'top',
+        left: 'right',
+      }[side]
+    ];
+
+  const flatSides = ({ neighbors }) =>
+    allSides
+      .filter(side => !Object.keys(neighbors).includes(side))
+      .reduce((acc, side) => ({ [side]: 'flat', ...acc }), {});
+
+  const shapedSides = ({ neighbors }) =>
+    Object.keys(neighbors).reduce((acc, side) => {
+      const neighbor = neighborShape(neighbors[side], side);
+      return {
+        [side]: neighbor
+          ? oppositeOf(neighbor)
+          : random() >= 0.5
+          ? 'out'
+          : 'in',
+        ...acc,
+      }
+    }, {});
+
+  const sides = [
+    ...Object.entries({
+      ...shapedSides(piece),
+      ...flatSides(piece),
+    }),
+  ]
+    .sort(clockwise)
+    .reduce((acc, [key, val]) => ({ ...acc, [key]: val }), {});
+
+  return [{ ...piece, sides }, ...acc]
+};
+
+const makePieces = (amount) => {
+  const piecesAmount = [...Array(amount.y * amount.x)];
+
+  const pieces = piecesAmount.map((_, i) => ({
+    id: i,
+    origin: {
+      x: i % amount.x,
+      y: Math.floor(i / amount.x),
+    },
+    pos: { x: 0, y: 0 },
+    neighbors: getNeighbors(i, amount.y, amount.x),
+    active: false, // if clicked/dragged
+    connections: [], // every other piece this one is snapped together with
+  }));
+
+  return pieces.reduce(makeShapes, [])
+};
+
+// shallow filtering
+const filterUnique = xs => [...new Set(xs)];
+const activeLast = (x, y) => (y.active ? -1 : 1);
+const mapReverse = fn => xs =>
+  xs.reduceRight((acc, el, i, arr) => [...acc, fn(el, i, arr, acc)], []);
+const sort = fn => xs => xs.sort(fn);
+
+function shuffleArray(array) {
+  const suffled = [...array];
+  let counter = suffled.length;
+
+  // While there are elements in the array
+  while (counter > 0) {
+    // Pick a random index
+    let index = Math.floor(Math.random() * counter);
+
+    // Decrease counter by 1
+    counter--;
+
+    // And swap the last element with it
+    let temp = suffled[counter];
+    suffled[counter] = suffled[index];
+    suffled[index] = temp;
+  }
+
+  return suffled
+}
+
+const randomBetween = val => {
+  return Math.random() * (val - val * -1) + val * -1
+};
+
+const shuffle =
+  (aligned = false) =>
+  puzzle => {
+    return {
+      ...puzzle,
+      pieces: aligned
+        ? shuffleArray(puzzle.pieces).map((piece, i) => ({
+            ...piece,
+            connections: [],
+            pos: {
+              x: (i % puzzle.size.x) / puzzle.size.x * 2 - 0.4 + randomBetween(0.03),
+              y: Math.floor(i / puzzle.size.x) / puzzle.size.y * 2 - 0.4 + randomBetween(0.03),
+              // x:
+              //   ((i % puzzle.size.x) / puzzle.size.x + randomBetween(0.015)) *
+              //   2,
+              // y:
+              //   (Math.floor(i / puzzle.size.x) / puzzle.size.y +
+              //     randomBetween(0.015)) *
+              //   2,
+            },
+          }))
+        : puzzle.pieces.map(piece => ({
+            ...piece,
+            connections: [],
+            pos: {
+              x: random() * 2 - 0.5,
+              y: random() * 2 - 0.5,
+            },
+          })),
+    }
+  };
+
+const asPosition = (piece, { x, y, width, height }) => {
+  return (
+    x >= piece.pos.x &&
+    x <= piece.pos.x + width &&
+    y >= piece.pos.y &&
+    y <= piece.pos.y + height
+  )
+};
+
+const isTruthy = prop => obj => obj[prop];
+
+const getPiecePos = (piece, { x, y }) => {
+  return {
+    x: x - piece.pos.x,
+    y: y - piece.pos.y,
+  }
+};
+
+// pieces gets painted bottom to top, we need to check in reverse order
+const activate =
+  ({ x, y }) =>
+  puzzle => ({
+    ...puzzle,
+    pieces: pipe(
+      // activate clicked piece (first occurrence)
+      mapReverse((piece, i, arr, acc) => ({
+        ...piece,
+        active:
+          !acc.find(isTruthy('active')) &&
+          asPosition(piece, {
+            x,
+            y,
+            width: 1 / puzzle.size.x,
+            height: 1 / puzzle.size.y,
+          })
+            ? getPiecePos(piece, { x, y })
+            : false,
+      })),
+
+      mapReverse((piece, i, arr) => ({
+        ...piece,
+        // activate the active piece's connections
+        active: arr.find(p => p.active && p.connections.includes(piece.id))
+          ? getPiecePos(piece, { x, y })
+          : piece.active,
+      })),
+
+      // put the active piece(s) on top
+      // if puzzle isn't done or not all pieces are active (puzzle dragged)
+      runIf(sort(activeLast))(
+        ps =>
+          !puzzle.done &&
+          ps.filter(p => p.active).length !== puzzle.pieces.length
+      )
+    )(puzzle.pieces),
+  });
+
+const deactivate = tap(puzzle => {
+  puzzle.pieces = puzzle.pieces.map(piece => ({
+    ...piece,
+    active: false,
+  }));
+});
+
+const move$1 =
+  ({ x, y }) =>
+  puzzle => {
+    return {
+      ...puzzle,
+      pieces:
+        puzzle.status === 'idle'
+          ? puzzle.pieces
+          : puzzle.pieces.map(piece => ({
+              ...piece,
+              pos: piece.active
+                ? {
+                    x: x - piece.active.x,
+                    y: y - piece.active.y,
+                  }
+                : piece.pos,
+            })),
+    }
+  };
+
+// should return, not modify
+const shareConnections = (puzzle, piece, newPiece) => {
+  piece.connections = filterUnique([
+    piece.id,
+    newPiece.id,
+    ...piece.connections,
+    ...newPiece.connections,
+  ]);
+
+  piece.connections.forEach(id => {
+    const connection = puzzle.pieces.find(piece => piece.id === id);
+    connection.connections = filterUnique(piece.connections);
+  });
+
+  newPiece.connections.forEach(id => {
+    const connection = puzzle.pieces.find(piece => piece.id === id);
+    connection.connections = filterUnique(piece.connections);
+  });
+};
+
+const nw = side => side === 'top' || side === 'left';
+
+// is piece1 close to piece2
+const isClose = (p1, p2, puzzle, side) => {
+  const { attraction, size } = puzzle;
+  const snapArea = attraction / 100;
+
+  const XY = isVertical(side) ? 'y' : 'x';
+  const invXY = XY === 'x' ? 'y' : 'x';
+
+  const positive = nw(side) ? false : true;
+
+  const siz = XY === 'y' ? 1 / size.y : 1 / size.x;
+  const offset = positive ? p2.pos[XY] + siz : p2.pos[XY] - siz;
+
+  return (
+    p1.pos[XY] <= offset + snapArea &&
+    p1.pos[XY] >= offset - snapArea &&
+    p1.pos[invXY] <= p2.pos[invXY] + snapArea &&
+    p1.pos[invXY] >= p2.pos[invXY] - snapArea
+  )
+};
+
+const same = (val, prop) => obj => obj[val] === prop;
+
+const moveConnections = (puzzle, [...pieceIds], distance) => {
+  pieceIds.forEach(id => {
+    const piece = puzzle.pieces.find(same('id', id));
+    piece.pos = {
+      x: piece.pos.x + distance.x,
+      y: piece.pos.y + distance.y,
+    };
+  });
+};
+
+const snap = tap(puzzle => {
+  const activePieces = puzzle.pieces.filter(piece => piece.active);
+  const { size } = puzzle;
+
+  if (!activePieces.length || activePieces.length === puzzle.pieces.length) {
+    return
+  }
+
+  activePieces.forEach(piece => {
+    Object.entries(piece.neighbors).forEach(([side, id]) => {
+      const neighbor = puzzle.pieces.find(same('id', id));
+
+      if (isClose(neighbor, piece, puzzle, side)) {
+        const newPos = {
+          x:
+            neighbor.pos.x +
+            (side === 'right'
+              ? -1 / size.x
+              : side === 'left'
+              ? +1 / size.x
+              : 0),
+          y:
+            neighbor.pos.y +
+            (side === 'top' ? 1 / size.y : side === 'bottom' ? -1 / size.y : 0),
+        };
+
+        // order is important
+        moveConnections(puzzle, piece.connections, {
+          x: newPos.x - piece.pos.x,
+          y: newPos.y - piece.pos.y,
+        });
+
+        piece.pos = newPos;
+
+        shareConnections(puzzle, piece, neighbor);
+      }
+    });
+  });
+});
+
+const status = tap(puzzle => {
+  if (puzzle.status === 'active') {
+    puzzle.moves = puzzle.moves + 1;
+  }
+
+  if (
+    puzzle.pieces[0].connections.length === puzzle.size.y * puzzle.size.x &&
+    !puzzle.done
+  ) {
+    puzzle.done = true;
+  }
+});
+
+const setStatus = ({ x, y }) =>
+  tap(puzzle => {
+    const active = puzzle.pieces.find(piece => piece.active);
+
+    if (active) {
+      puzzle.status = 'active';
+      return
+    }
+
+    const hovered = puzzle.pieces.find(piece =>
+      asPosition(piece, {
+        x,
+        y,
+        width: 1 / puzzle.size.x,
+        height: 1 / puzzle.size.y,
+      })
+    );
+
+    if (hovered && !active) {
+      puzzle.status = 'ready';
+      return
+    }
+
+    puzzle.status = 'idle';
+  });
+
+/**
+ * MIT License - Copyright (c) 2021 Kaiido
+ *
+ * A monkey-patch for Safari's drawImage.
+ *
+ * This browser doesn't handle well using the cropping abilities of drawImage
+ * with out-of-bounds values.
+ * (see https://stackoverflow.com/questions/35500999/cropping-with-drawimage-not-working-in-safari)
+ * This script takes care of detecting when the monkey-patch is needed,
+ * and does redefine the cropping parameters so they fall inside the source's boundaries.
+ *
+**/
+
+(()=> {
+
+  if( !needPoly() ) { return; }
+
+  const proto = CanvasRenderingContext2D.prototype;
+  const original = proto.drawImage;
+  if( !original ) {
+    console.error( "This script requires a basic implementation of drawImage" );
+    return;
+  }
+
+  proto.drawImage = function drawImage( source, x, y ) { // length: 3
+
+    const will_crop = arguments.length === 9;
+    if( !will_crop ) {
+      return original.apply( this, [...arguments] );
+    }
+
+    const safe_rect = getSafeRect( ...arguments );
+    if( isEmptyRect( safe_rect ) ) {
+      return;
+    }
+    return original.apply( this, safe_rect );
+  }; 
+
+  function needPoly() {
+    const ctx = document.createElement( "canvas" ).getContext( "2d" );
+    ctx.fillRect( 0, 0, 40, 40 );
+    ctx.drawImage( ctx.canvas, -40, -40, 80, 80, 50, 50, 20, 20 );
+
+    const img = ctx.getImageData( 50, 50, 30, 30 ); // 10px around expected square
+    const data = new Uint32Array( img.data.buffer );
+    const colorAt = (x, y) => data[ y * img.width + x ];
+
+    const transparents = [ [ 9, 9 ], [ 20, 9 ], [ 9, 20 ], [ 20, 20 ] ];
+    const blacks = [ [ 10, 10 ], [ 19, 10 ], [ 10, 19 ], [ 19, 19 ] ];
+    return transparents.some( ([ x, y ]) => colorAt( x, y ) !== 0x00000000 ) ||
+      blacks.some( ([ x, y ]) => colorAt( x, y ) === 0x00000000 )
+  }
+
+  function getSafeRect( image, sx, sy, sw, sh, dx, dy, dw, dh ) {
+  
+    const { width, height } = getSourceDimensions( image );
+    
+    if( sw < 0 ) {
+      sx += sw;
+      sw = Math.abs( sw );
+    }
+    if( sh < 0 ) {
+      sy += sh;
+      sh = Math.abs( sh );
+    }
+    if( dw < 0 ) {
+      dx += dw;
+      dw = Math.abs( dw );
+    }
+    if( dh < 0 ) {
+      dy += dh;
+      dh = Math.abs( dh );
+    }
+    const x1 = Math.max( sx, 0 );
+    const x2 = Math.min( sx + sw, width );
+    const y1 = Math.max( sy, 0 );
+    const y2 = Math.min( sy + sh, height );
+    const w_ratio = dw / sw;
+    const h_ratio = dh / sh;
+
+    return [
+      image,
+      x1,
+      y1,
+      x2 - x1,
+      y2 - y1,
+      sx < 0 ? dx - (sx * w_ratio) : dx,
+      sy < 0 ? dy - (sy * h_ratio) : dy,
+      (x2 - x1) * w_ratio,
+      (y2 - y1) * h_ratio
+    ];
+
+  }
+
+  function isEmptyRect( args ) {
+    // sw, sh, dw, dh
+    return [ 3, 4, 7, 8 ].some( (index) => !args[ index ] );
+  }
+
+  function getSourceDimensions( source ) {
+    const sourceIs = ( type ) => {
+      const constructor = globalThis[ type ];
+      return constructor && (source instanceof constructor);
+    };
+    if( sourceIs( "HTMLImageElement" ) ) {
+      return { width: source.naturalWidth, height: source.naturalHeight };
+    }
+    else if( sourceIs( "HTMLVideoElement" ) ) {
+      return { width: source.videoWidth, height: source.videoHeight };
+    }
+    else if( sourceIs( "SVGImageElement" ) ) {
+      throw new TypeError( "SVGImageElement isn't yet supported as source image.", "UnsupportedError" );
+    }
+    else if( sourceIs( "HTMLCanvasElement" ) || sourceIs( "ImageBitmap" ) ) {
+      return source;
+    }
+  }
+
+})();
+
+const clamp = (val, min, max) => {
+  return Math.max(min, Math.min(max, val))
+};
+
+let scale = 1;
+const position = {
+  x: 250,
+  y: 125,
+};
+
+const zoom = ({ focal, zoom, max = 10000, min = 0.05 }) => {
+  const atMax = scale === max || scale === min;
+
+  scale = clamp(scale * zoom, min, max);
+
+  const at = {
+    x: atMax ? position.x : focal.x,
+    y: atMax ? position.y : focal.y,
+  };
+
+  position.x = at.x - (at.x - position.x) * zoom;
+  position.y = at.y - (at.y - position.y) * zoom;
+
+  return { position, scale }
+};
+
+const restore = () => {
+  console.log('RESTORE');
+  position.x = 0;
+  position.y = 0;
+  //position.x = (window.innerWidth / 2) * Math.min(2, window.devicePixelRatio)
+  //position.y = (window.innerHeight / 2) * Math.min(2, window.devicePixelRatio)
+};
+
+var pan = (
+    canvas,
+    {
+      dpi = Math.min(2, window.devicePixelRatio),
+      bounding = null,
+      initScale = 1,
+    } = {}
+) => {
+  canvas.style.touchAction = 'none';
+  canvas.style.userSelect = 'none';
+  canvas.style.webkitUserSelect = 'none';
+  canvas.style.overscrollBehaviour = 'contain';
+  scale = initScale;
+
+  const dispatch = detail => {
+    canvas.dispatchEvent(
+        new CustomEvent('pan', {
+          detail,
+          bubbles: true,
+          cancelable: true,
+          composed: false,
+        })
+    );
+  };
+
+  setTimeout(() => dispatch({ scale, position }));
+
+  return {
+    zoom: newScale => {
+      zoom({
+        focal: {
+          x: (window.innerWidth / 2) * dpi,
+          y: (window.innerHeight / 2) * dpi,
+        },
+        zoom: newScale,
+      });
+
+      dispatch({ scale, position });
+    },
+    restore: () => {
+      restore();
+      dispatch({ scale, position });
+    },
+  }
+};
+
+const getTransformedPosition = (
+    { x, y },
+    dpi = Math.min(2, window.devicePixelRatio)
+) => {
+  return [(x * dpi - position.x) / scale, (y * dpi - position.y) / scale]
+};
+
+const loadImage = src =>
+  new Promise(resolve => {
+    var image = new Image();
+    // image.crossOrigin = 'anonymous'
+    image.onload = () =>
+      resolve({ image, width: image.width, height: image.height });
+
+    image.src = src;
+  });
+
+const resize = canvas => {
+  const { height, width } = getComputedStyle(canvas.parentElement);
+
+  canvas.width = parseInt(width, 0);
+  canvas.height = parseInt(height, 0);
+  //canvas.width = parseInt(width, 0) * dpr
+  //canvas.height = parseInt(height, 0) * dpr
+};
+
+const makeCanvas = element => {
+  const canvas =
+    element && element.tagName === 'CANVAS'
+      ? element
+      : document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+
+  if (element && element.tagName !== 'CANVAS') {
+    element.appendChild(canvas);
+
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+
+    resize(canvas);
+  }
+  
+  ctx.strokeStyle = 'rgba(220, 220, 220, 1)';
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+
+  return {
+    canvas,
+    ctx,
+  }
+};
+
+const clearCanvas = tap(ui => {
+  const { canvas, ctx } = ui;
+  ctx.save();
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.restore();
+});
+
+const paint = puzzle =>
+  tap(ui => {
+    clearCanvas(ui);
+    puzzle.pieces.map(paintPiece(puzzle, ui));
+  });
+
+const setCursor = puzzle =>
+  tap(ui => {
+    ui.canvas.style.cursor =
+      puzzle.status === 'active'
+        ? 'grabbing'
+        : puzzle.status === 'ready'
+        ? 'grab'
+        : 'default';
+  });
+
+const paintPiece = (puzzle, ui) => piece => {
+  const pos = {
+    x: piece.pos.x * ui.size.x,
+    y: piece.pos.y * ui.size.y,
+  };
+
+  const size = {
+    x: ui.size.x / puzzle.size.x,
+    y: ui.size.y / puzzle.size.y,
+  };
+
+  const path = ui.shapes[piece.id];
+
+  const { ctx, image } = ui;
+  const shapeOffset = Math.max(size.x, size.y);
+
+  ctx.save();
+  ctx.translate(pos.x, pos.y);
+
+  const highlight = !puzzle.done && (piece.active || piece.alsoActive);
+  const strokeWidth = 4 / Math.max(ui.zoom, 2);
+
+  ctx.shadowColor = highlight ? 'rgba(100, 100, 100, 1)' : 'rgba(50, 50, 50, 1)';
+  ctx.shadowBlur = strokeWidth;
+  ctx.shadowOffsetX = ctx.shadowOffsetY = -strokeWidth / 2;
+
+  ctx.lineWidth = highlight ? strokeWidth * 2 : strokeWidth;
+
+  ctx.stroke(path);
+  ctx.clip(path);
+
+  ctx.drawImage(
+    image, // image
+    piece.origin.x * size.x - shapeOffset, // what part of image
+    piece.origin.y * size.y - shapeOffset, // what part of image
+    size.x + shapeOffset * 2, // how much of image
+    size.y + shapeOffset * 2, // how much of image
+    piece.pos.x / ui.size.x - shapeOffset, // where on canvas
+    piece.pos.y / ui.size.y - shapeOffset, // where on canvas
+    size.x + shapeOffset * 2, // how big on canvas
+    size.y + shapeOffset * 2 // how big on canvas
+  );
+
+  ctx.restore();
+};
+
+const rotatePoint = (center, degrees, ...args) => {
+  const deg = (degrees * Math.PI) / 180;
+  const { sin, cos } = Math;
+
+  return args
+    .map(([x, y]) => [
+      (x - center.x) * cos(deg) - (y - center.y) * sin(deg) + center.x,
+      (x - center.x) * sin(deg) + (y - center.y) * cos(deg) + center.y,
+    ])
+    .flat()
+};
+
+const rotate = (bezier, angle) => {
+  const [origin] = bezier[0];
+
+  return bezier.map(part => {
+    return rotatePoint({ x: origin[0], y: origin[1] }, angle, ...part)
+  })
+};
+
+const move = (curve, to) => {
+  const res = curve.map(part => {
+    return part.map(point => {
+      return [point[0] + to.x, point[1] + to.y]
+    })
+  });
+  return res
+};
+
+const bezier = ({ knobsize = 1, length = 100 }) => {
+  const middle = length / 2;
+
+  return [
+    // left shoulder
+    [
+      [0,                       0],
+      [middle - knobsize * 20,  knobsize * 4],
+      [middle - knobsize * 13,  0],
+    ],
+
+    // left neck
+    [
+      [middle - knobsize * 13,  0],
+      [middle - knobsize * 10,  knobsize * -2],
+      [middle - knobsize * 12,  knobsize * -5],
+    ],
+
+    // left head
+    [
+      [middle - knobsize * 12,  knobsize * -5],
+      [middle - knobsize * 30,  knobsize * -30],
+      [middle,                  knobsize * -30],
+    ],
+
+    // right head
+    [
+      [middle,                  knobsize * -30],
+      [middle - knobsize * -30, knobsize * -30],
+      [middle - knobsize * -12, knobsize * -5],
+    ],
+
+    // right neck
+    [
+      [middle - knobsize * -12, knobsize * -5],
+      [middle - knobsize * -10, knobsize * -2],
+      [middle - knobsize * -13, 0],
+    ],
+
+    // right shoulder
+    [
+      [middle - knobsize * -13, 0],
+      [middle - knobsize * -20, knobsize * 4],
+      [length,                  0],
+    ],
+  ]
+};
+
+const bezierInv = (curve, y = 1) => {
+  const res = curve.map(part => {
+    return part.map(point => {
+      return [point[0] * y, point[1] * -1]
+    })
+  });
+  return res
+};
+
+const createPiece = ({ size, shapes, knobsize }) => {
+  const path = new Path2D();
+
+  if (!shapes.length === 4) {
+    console.log('a piece needs to have 4 sides');
+    return
+  }
+
+  const angles = [0, 90, 180, 270];
+  const corners = [
+    { x: 0, y: 0 },
+    { x: size.x, y: 0 },
+    { x: size.x, y: size.y },
+    { x: 0, y: size.y },
+  ];
+
+  corners.forEach((corner, idx) => {
+    const length = idx % 2 === 1 ? size.y : size.x;
+    const shape = shapes[idx];
+
+    if (shape === 'flat') {
+      const end = rotatePoint(corner, angles[idx], [
+        corner.x + length,
+        corner.y,
+      ]);
+
+      path.lineTo(...end);
+    } else {
+      const bez = bezier({
+        length,
+        knobsize,
+      });
+
+      const curve =
+        shape === 'in'
+          ? rotate(move(bezierInv(bez), corner), angles[idx])
+          : rotate(move(bez, corner), angles[idx]);
+
+      curve.forEach(p => path.bezierCurveTo(...p.flat()));
+    }
+  });
+
+  path.closePath();
+
+  return path
+};
+
+const createPieces = (width, height, arr) => {
+  return arr.reduce((acc, cur) => {
+    return {
+      ...acc,
+      [cur.id]: createPiece({
+        size: {
+          x: width,
+          y: height,
+        },
+        shapes: Object.values(cur.sides),
+        knobsize: Math.min(width, height) / 110,
+      }),
+    }
+  }, {})
+};
+
+const puzzle = async ({
+  element,
+  image: img = '',
+  pieces = { x: 6, y: 4 },
+  attraction = 5,
+  aligned = false,
+  zoom: initZoom,
+  beforeInit = () => {},
+  onInit = () => {},
+  onComplete = () => {},
+  onChange = () => {},
+}) => {
+  const container =
+    typeof element === 'string' ? document.querySelector(element) : element;
+
+  if (!container) {
+    console.warn(`Couldn't find element: ${element}`);
+    return
+  }
+
+  const { canvas, ctx } = makeCanvas(container);
+
+  beforeInit(canvas);
+
+  const { image, width, height } = await loadImage(img);
+
+  const initPuzzle = {
+    moves: 0,
+    status: 'idle',
+    done: false,
+    startTime: Date.now(),
+    attraction,
+    size: pieces,
+    pieces: makePieces(pieces),
+  };
+
+  const initUI = {
+    url: img,
+    zoom: 1,
+    position: { x: 0, y: 0 },
+    size: { x: width, y: height },
+    canvas,
+    ctx,
+    image,
+    dpi: Math.min(2, window.devicePixelRatio),
+    shapes: createPieces(
+      width / pieces.x,
+      height / pieces.y,
+      initPuzzle.pieces
+    ),
+  };
+
+  let state = {};
+
+  state.puzzle = pipe(shuffle(aligned))(initPuzzle);
+  state.ui = paint(state.puzzle)(initUI);
+
+  const { zoom, restore } = pan(canvas, {
+    dpi: Math.min(2, window.devicePixelRatio),
+    initScale:
+      initZoom ||
+      Math.min(
+        (window.innerWidth / state.ui.size.x) * 0.9,
+        (window.innerHeight / state.ui.size.y) * 0.9
+      ),
+  });
+
+  const updateUI = () => {
+    state.ui = pipe(paint(state.puzzle), setCursor(state.puzzle))(state.ui);
+  };
+
+  canvas.addEventListener('pan', e => {
+    e.preventDefault();
+    const {
+      detail: { scale, position },
+    } = e;
+
+    state.ui.zoom = scale;
+    state.ui.position = position;
+
+    state.ui.ctx.setTransform(scale, 0, 0, scale, position.x, position.y);
+    updateUI();
+  });
+
+  setTimeout(() => onInit(state));
+
+  const getCursor = ({ x, y }) => {
+    const [xpos, ypos] = getTransformedPosition(
+      { x, y },
+      Math.min(2, window.devicePixelRatio)
+    );
+    return { x: xpos / state.ui.size.x, y: ypos / state.ui.size.y }
+  };
+
+  const handlePointerdown = ({ offsetX: x, offsetY: y }) => {
+    const cursor = getCursor({ x, y });
+
+    state.puzzle = pipe(activate(cursor), setStatus(cursor))(state.puzzle);
+
+    updateUI();
+  };
+
+  const handlePointermove = ({ offsetX: x, offsetY: y }) => {
+    const cursor = getCursor({ x, y });
+
+    state.puzzle = pipe(move$1(cursor), setStatus(cursor))(state.puzzle);
+
+    updateUI();
+  };
+
+  const handlePointerup = ({ offsetX: x, offsetY: y }) => {
+    const cursor = getCursor({ x, y });
+
+    state.puzzle = pipe(
+      snap,
+      deactivate,
+      status,
+      setStatus(cursor)
+    )(state.puzzle);
+
+    updateUI();
+
+    onChange({ ui: state.ui, puzzle: clone(state.puzzle) });
+
+    if (state.puzzle.done) onComplete(state);
+  };
+
+  const handleResize = () => {
+    const { zoom, position } = state.ui;
+    resize(state.ui.canvas);
+    ctx.setTransform(zoom, 0, 0, zoom, position.x, position.y);
+    updateUI();
+  };
+
+  state.ui.canvas.addEventListener('pointerdown', handlePointerdown);
+  state.ui.canvas.addEventListener('pointermove', handlePointermove);
+  state.ui.canvas.addEventListener('pointerup', handlePointerup);
+  window.addEventListener('resize', handleResize);
+
+  return {
+    newGame: () => {
+      state.puzzle = pipe(shuffle(aligned))(initPuzzle);
+      updateUI();
+    },
+    getState: () => clone(state.puzzle),
+    setState: newState => {
+      state.puzzle = newState;
+      updateUI();
+    },
+    destroy: () => {
+      if (element.tagName !== 'CANVAS') {
+        state.ui.canvas.remove();
+      }
+
+      state = null;
+    },
+    setZoom: zoom,
+    getZoom: () => state.ui.zoom,
+    centralize: restore,
+  }
+};
+
+exports.puzzle = puzzle;

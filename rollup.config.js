@@ -18,5 +18,5 @@ export default {
       format: 'iife',
     },
   ],
-  plugins: [terser()],
+  // plugins: [terser()],
 }
