@@ -4,8 +4,8 @@ const clamp = (val, min, max) => {
 
 let scale = 1
 const position = {
-  x: 350,
-  y: 250,
+  x: 550,
+  y: 450,
 }
 
 const move = ({ x, y, bounding = { x: Infinity, y: Infinity } }) => {
