@@ -3,9 +3,19 @@ const clamp = (val, min, max) => {
 }
 
 let scale = 1
+
+const isWindows = () => {
+  return navigator.platform.includes('Win');
+}
+
 const position = {
   x: 225,
   y: 125,
+}
+
+if (isWindows()) {
+    position.x = 0;
+    position.y = 0;
 }
 
 const move = ({ x, y, bounding = { x: Infinity, y: Infinity } }) => {
