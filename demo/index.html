@@ -13,6 +13,43 @@
       <div style="height: 1000px;"></div>
       <div id="app" style="width: 1140px; height: 640px; border: 2px solid grey;"></div>
     </div>
+    <div style="position: fixed; pointer-events: none; top: 0; left: 0; width: 100%; height: 100%;">
+      <div id="icon" style="position: absolute; width: 30px; margin-left: -15px; height: 30px; margin-top: -15px; background: red; border-radius: 50%; left: 0; top: 0"></div>
+    </div>
+
+    <script>
+      function animateBurst() {
+        var burstEl = document.getElementById('burst');
+        burstEl.classList.remove('animate');
+        setTimeout(function () {
+          burstEl.classList.add('animate');
+        }, 1);
+      }
+    </script>
+    <button onclick="animateBurst()">HIT</button>
+
+    <div id="burst" class="burst">
+      <!-- Circle -->
+      <div class="burst-circle"></div>
+      <!-- Primary lines -->
+      <div class="burst-p burst-p-1"><span><em></em></span></div>
+      <div class="burst-p burst-p-2"><span><em></em></span></div>
+      <div class="burst-p burst-p-3"><span><em></em></span></div>
+      <div class="burst-p burst-p-4"><span><em></em></span></div>
+      <div class="burst-p burst-p-5"><span><em></em></span></div>
+      <div class="burst-p burst-p-6"><span><em></em></span></div>
+      <div class="burst-p burst-p-7"><span><em></em></span></div>
+      <div class="burst-p burst-p-8"><span><em></em></span></div>
+      <!-- Secondary lines -->
+      <div class="burst-s burst-s-1"><span><em></em></span></div>
+      <div class="burst-s burst-s-2"><span><em></em></span></div>
+      <div class="burst-s burst-s-3"><span><em></em></span></div>
+      <div class="burst-s burst-s-4"><span><em></em></span></div>
+      <div class="burst-s burst-s-5"><span><em></em></span></div>
+      <div class="burst-s burst-s-6"><span><em></em></span></div>
+      <div class="burst-s burst-s-7"><span><em></em></span></div>
+      <div class="burst-s burst-s-8"><span><em></em></span></div>
+    </div>
 
     <div class="ui">
       <button id="new-game">New</button>
