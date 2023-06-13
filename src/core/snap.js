@@ -56,12 +56,10 @@ export const snap = tap(puzzle => {
         }
         if (!puzzle.completedAnimationsMap[piece.id]) {
           puzzle.completedAnimationsMap[piece.id] = piece;
-          console.log(piece.id, piece);
-          window.lastPiece = piece;
 
-          const icon = document.getElementById('icon');
-          icon.style.left = window.lastCursorPosition[0] + 'px';
-          icon.style.top = window.lastCursorPosition[1] + 'px';
+          console.log('Dispatching burst event');
+          const burstEvent = new CustomEvent('burst', {x: window.lastCursorPosition[0], y: window.lastCursorPosition[1]});
+          window.dispatchEvent(burstEvent);
         }
       }
     })
