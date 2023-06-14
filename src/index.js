@@ -124,8 +124,7 @@ export const puzzle = async ({
 
   const handlePointerup = ({ offsetX: x, offsetY: y, clientX, clientY }) => {
     const cursor = getCursor({ x, y })
-    window.lastCursorPosition = [parseInt(clientX), parseInt(clientY)];
-    console.log(window.lastCursorPosition);
+    window.puzzleLastCursorPosition = {x: parseInt(clientX), y: parseInt(clientY)};
 
     state.puzzle = pipe(
       snap,

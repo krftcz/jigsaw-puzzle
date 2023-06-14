@@ -51,14 +51,14 @@ export const snap = tap(puzzle => {
         shareConnections(puzzle, piece, neighbor)
 
         // Init animation storage
-        if (!puzzle.completedAnimationsMap) {
-          puzzle.completedAnimationsMap = {};
+        if (!window.puzzleCompletedAnimationsMap) {
+          window.puzzleCompletedAnimationsMap = {};
         }
-        if (!puzzle.completedAnimationsMap[piece.id]) {
-          puzzle.completedAnimationsMap[piece.id] = piece;
+        if (!window.puzzleCompletedAnimationsMap[piece.id]) {
+          window.puzzleCompletedAnimationsMap[piece.id] = piece;
 
           console.log('Dispatching burst event');
-          const burstEvent = new CustomEvent('burst', {x: window.lastCursorPosition[0], y: window.lastCursorPosition[1]});
+          const burstEvent = new CustomEvent('burst', window.puzzleLastCursorPosition);
           window.dispatchEvent(burstEvent);
         }
       }
